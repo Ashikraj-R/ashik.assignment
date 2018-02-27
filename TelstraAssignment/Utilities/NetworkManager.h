@@ -10,4 +10,7 @@
 
 @interface NetworkManager : NSObject
 
++ (void) getListFromServer:(NSString *)urlString withCompletionHandler:(void (^)(NSDictionary *image, NSError * err))completionBlock;
++ (void) downloadImage:(NSString *)urlString withCompletionHandler:(void (^)(NSData *imageData, NSError * err))completionBlock;
+
 @end
