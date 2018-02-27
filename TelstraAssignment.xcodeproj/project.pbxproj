@@ -1,0 +1,347 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FAA8D97720452800006906F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D97620452800006906F1 /* main.m */; };
+		FAA8D97A20452800006906F1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D97920452800006906F1 /* AppDelegate.m */; };
+		FAA8D99220452BC9006906F1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D99120452BC9006906F1 /* MainViewController.m */; };
+		FAA8D99520452F03006906F1 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D99420452F03006906F1 /* NetworkManager.m */; };
+		FAA8D99820452F2F006906F1 /* CustomTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D99720452F2F006906F1 /* CustomTableCell.m */; };
+		FAA8D99B20452FBC006906F1 /* ItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D99A20452FBC006906F1 /* ItemModel.m */; };
+		FAA8D99C204535CD006906F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAA8D98120452801006906F1 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		FAA8D97220452800006906F1 /* TelstraAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TelstraAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAA8D97620452800006906F1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FAA8D97820452800006906F1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		FAA8D97920452800006906F1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FAA8D98120452801006906F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FAA8D98620452801006906F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAA8D99020452BC9006906F1 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Controllers/MainViewController.h; sourceTree = "<group>"; };
+		FAA8D99120452BC9006906F1 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Controllers/MainViewController.m; sourceTree = "<group>"; };
+		FAA8D99320452F03006906F1 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkManager.h; path = Utilities/NetworkManager.h; sourceTree = "<group>"; };
+		FAA8D99420452F03006906F1 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkManager.m; path = Utilities/NetworkManager.m; sourceTree = "<group>"; };
+		FAA8D99620452F2F006906F1 /* CustomTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomTableCell.h; path = Views/CustomTableCell.h; sourceTree = "<group>"; };
+		FAA8D99720452F2F006906F1 /* CustomTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomTableCell.m; path = Views/CustomTableCell.m; sourceTree = "<group>"; };
+		FAA8D99920452FBC006906F1 /* ItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemModel.h; path = Models/ItemModel.h; sourceTree = "<group>"; };
+		FAA8D99A20452FBC006906F1 /* ItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemModel.m; path = Models/ItemModel.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FAA8D96F20452800006906F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FAA8D96920452800006906F1 = {
+			isa = PBXGroup;
+			children = (
+				FAA8D97420452800006906F1 /* TelstraAssignment */,
+				FAA8D97320452800006906F1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FAA8D97320452800006906F1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FAA8D97220452800006906F1 /* TelstraAssignment.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FAA8D97420452800006906F1 /* TelstraAssignment */ = {
+			isa = PBXGroup;
+			children = (
+				FAA8D98F20452A10006906F1 /* Utilities */,
+				FAA8D98E20452A09006906F1 /* Controllers */,
+				FAA8D98D20452A03006906F1 /* Views */,
+				FAA8D98C204529FA006906F1 /* Models */,
+				FAA8D97820452800006906F1 /* AppDelegate.h */,
+				FAA8D97920452800006906F1 /* AppDelegate.m */,
+				FAA8D98120452801006906F1 /* Assets.xcassets */,
+				FAA8D98620452801006906F1 /* Info.plist */,
+				FAA8D97520452800006906F1 /* Supporting Files */,
+			);
+			path = TelstraAssignment;
+			sourceTree = "<group>";
+		};
+		FAA8D97520452800006906F1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FAA8D97620452800006906F1 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FAA8D98C204529FA006906F1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FAA8D99920452FBC006906F1 /* ItemModel.h */,
+				FAA8D99A20452FBC006906F1 /* ItemModel.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		FAA8D98D20452A03006906F1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FAA8D99620452F2F006906F1 /* CustomTableCell.h */,
+				FAA8D99720452F2F006906F1 /* CustomTableCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		FAA8D98E20452A09006906F1 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FAA8D99020452BC9006906F1 /* MainViewController.h */,
+				FAA8D99120452BC9006906F1 /* MainViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		FAA8D98F20452A10006906F1 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				FAA8D99320452F03006906F1 /* NetworkManager.h */,
+				FAA8D99420452F03006906F1 /* NetworkManager.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FAA8D97120452800006906F1 /* TelstraAssignment */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAA8D98920452801006906F1 /* Build configuration list for PBXNativeTarget "TelstraAssignment" */;
+			buildPhases = (
+				FAA8D96E20452800006906F1 /* Sources */,
+				FAA8D96F20452800006906F1 /* Frameworks */,
+				FAA8D97020452800006906F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TelstraAssignment;
+			productName = TelstraAssignment;
+			productReference = FAA8D97220452800006906F1 /* TelstraAssignment.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FAA8D96A20452800006906F1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = Infosys;
+				TargetAttributes = {
+					FAA8D97120452800006906F1 = {
+						CreatedOnToolsVersion = 8.2;
+						DevelopmentTeam = 9T8VCH5YJJ;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = FAA8D96D20452800006906F1 /* Build configuration list for PBXProject "TelstraAssignment" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FAA8D96920452800006906F1;
+			productRefGroup = FAA8D97320452800006906F1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FAA8D97120452800006906F1 /* TelstraAssignment */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FAA8D97020452800006906F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAA8D99C204535CD006906F1 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FAA8D96E20452800006906F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAA8D99B20452FBC006906F1 /* ItemModel.m in Sources */,
+				FAA8D99820452F2F006906F1 /* CustomTableCell.m in Sources */,
+				FAA8D99520452F03006906F1 /* NetworkManager.m in Sources */,
+				FAA8D97A20452800006906F1 /* AppDelegate.m in Sources */,
+				FAA8D99220452BC9006906F1 /* MainViewController.m in Sources */,
+				FAA8D97720452800006906F1 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		FAA8D98720452801006906F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FAA8D98820452801006906F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FAA8D98A20452801006906F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = 9T8VCH5YJJ;
+				INFOPLIST_FILE = TelstraAssignment/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ashik.TelstraAssignment;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FAA8D98B20452801006906F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = 9T8VCH5YJJ;
+				INFOPLIST_FILE = TelstraAssignment/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ashik.TelstraAssignment;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FAA8D96D20452800006906F1 /* Build configuration list for PBXProject "TelstraAssignment" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAA8D98720452801006906F1 /* Debug */,
+				FAA8D98820452801006906F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAA8D98920452801006906F1 /* Build configuration list for PBXNativeTarget "TelstraAssignment" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAA8D98A20452801006906F1 /* Debug */,
+				FAA8D98B20452801006906F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FAA8D96A20452800006906F1 /* Project object */;
+}
