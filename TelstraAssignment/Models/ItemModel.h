@@ -10,4 +10,10 @@
 
 @interface ItemModel : NSObject
 
+@property (strong, nonatomic) NSString *itemTitle;
+@property (strong, nonatomic) NSString *itemDescription;
+@property (strong, nonatomic) NSString *imageURL;
+
+- (instancetype)initWithDict:(NSDictionary *)dictionary;
+
 @end

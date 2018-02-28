@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA58C98720464DCA00F10875 /* UIImageView+ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = FA58C98620464DCA00F10875 /* UIImageView+ImageDownloader.m */; };
+		FA58C98A2046A74800F10875 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FA58C9892046A74800F10875 /* Reachability.m */; };
 		FAA8D97720452800006906F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D97620452800006906F1 /* main.m */; };
 		FAA8D97A20452800006906F1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D97920452800006906F1 /* AppDelegate.m */; };
 		FAA8D99220452BC9006906F1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D99120452BC9006906F1 /* MainViewController.m */; };
@@ -17,6 +19,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA58C98520464DCA00F10875 /* UIImageView+ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+ImageDownloader.h"; path = "Categories/UIImageView+ImageDownloader.h"; sourceTree = "<group>"; };
+		FA58C98620464DCA00F10875 /* UIImageView+ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+ImageDownloader.m"; path = "Categories/UIImageView+ImageDownloader.m"; sourceTree = "<group>"; };
+		FA58C9882046A74800F10875 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Utilities/Reachability.h; sourceTree = "<group>"; };
+		FA58C9892046A74800F10875 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Utilities/Reachability.m; sourceTree = "<group>"; };
+		FA58C98B2046B1C400F10875 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = Utilities/Constants.h; sourceTree = "<group>"; };
 		FAA8D97220452800006906F1 /* TelstraAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TelstraAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA8D97620452800006906F1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FAA8D97820452800006906F1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -44,6 +51,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA58C98420464D1300F10875 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				FA58C98520464DCA00F10875 /* UIImageView+ImageDownloader.h */,
+				FA58C98620464DCA00F10875 /* UIImageView+ImageDownloader.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		FAA8D96920452800006906F1 = {
 			isa = PBXGroup;
 			children = (
@@ -63,6 +79,7 @@
 		FAA8D97420452800006906F1 /* TelstraAssignment */ = {
 			isa = PBXGroup;
 			children = (
+				FA58C98420464D1300F10875 /* Categories */,
 				FAA8D98F20452A10006906F1 /* Utilities */,
 				FAA8D98E20452A09006906F1 /* Controllers */,
 				FAA8D98D20452A03006906F1 /* Views */,
@@ -114,8 +131,11 @@
 		FAA8D98F20452A10006906F1 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				FA58C9882046A74800F10875 /* Reachability.h */,
+				FA58C9892046A74800F10875 /* Reachability.m */,
 				FAA8D99320452F03006906F1 /* NetworkManager.h */,
 				FAA8D99420452F03006906F1 /* NetworkManager.m */,
+				FA58C98B2046B1C400F10875 /* Constants.h */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -191,6 +211,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAA8D99B20452FBC006906F1 /* ItemModel.m in Sources */,
+				FA58C98720464DCA00F10875 /* UIImageView+ImageDownloader.m in Sources */,
+				FA58C98A2046A74800F10875 /* Reachability.m in Sources */,
 				FAA8D99820452F2F006906F1 /* CustomTableCell.m in Sources */,
 				FAA8D99520452F03006906F1 /* NetworkManager.m in Sources */,
 				FAA8D97A20452800006906F1 /* AppDelegate.m in Sources */,
@@ -296,7 +318,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = 9T8VCH5YJJ;
 				INFOPLIST_FILE = TelstraAssignment/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -310,7 +331,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = 9T8VCH5YJJ;
 				INFOPLIST_FILE = TelstraAssignment/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
