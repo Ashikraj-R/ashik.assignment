@@ -50,6 +50,11 @@
         }
     }
     
+    //Returning nil if the all the 3 paramters are null so that it won't be displayed in the table
+    if([self.itemTitle isEqualToString:@""]&&[self.itemDescription isEqualToString:@""]&&[self.imageURL isEqualToString:@""]) {
+        return nil;
+    }
+    
     return self;
 }
 
