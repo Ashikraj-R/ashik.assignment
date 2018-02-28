@@ -7,21 +7,118 @@
 //
 
 #import "MainViewController.h"
+#import "NetworkManager.h"
+#import "ItemModel.h"
+#import "CustomTableCell.h"
+#import "UIImageView+ImageDownloader.h"
+#import "Reachability.h"
 
 @interface MainViewController ()
+
+@property (strong, nonatomic) NSMutableArray *dataList;
+@property (strong, nonatomic) NSString *navigationTitle;
+@property (strong, nonatomic) NSCache *cache;
 
 @end
 
 @implementation MainViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    [self initialSetup];
+    [self fetchAndRefresh];
+ 
+}
+
+- (void) initialSetup {
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    //Initialize the required objects
+    self.dataList = [[NSMutableArray alloc] init];
+    self.cache = [[NSCache alloc] init];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    
+    //Set target to refresh control and add to the table view
+    [self.refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
+    
+    //Set the table cell height to dynamic so it increases or decreases depending on cell content
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 50;
+    
+}
+
+- (void) refreshTable {
+    [self fetchAndRefresh];
+}
+
+- (void) fetchAndRefresh {
+    
+    //Check for internet connection and show error if not available
+    if([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] == NotReachable) {
+        [self showError:@"Internet is not available Please try after switching on internet"];
+        return;
+    }
+    
+    //Perform service call to fetch list from server
+    [NetworkManager getListFromServer:@"https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json" withCompletionHandler:^(NSDictionary *dictionary, NSError *error) {
+        
+        //Check if no error is present
+        if(error == nil && dictionary != nil) {
+            
+            if([dictionary objectForKey:@"title"]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.navigationController.navigationBar.topItem.title = [dictionary objectForKey:@"title"];
+                });
+            }
+            
+            if([dictionary objectForKey:@"rows"]) {
+                
+                //Checking if the row type is dictionary to avoid crashes
+                if([[dictionary objectForKey:@"rows"] isKindOfClass:[NSArray class]]) {
+                    [self.dataList removeAllObjects];
+                    NSArray *itemsList = [dictionary objectForKey:@"rows"];
+                    
+                    //Iterating and creating item models by passing the row data
+                    for(NSDictionary *itemData in itemsList) {
+                        ItemModel *item = [[ItemModel alloc] initWithDict:itemData];
+                        if(item) {
+                            [self.dataList addObject:item];
+                        }
+                    }
+                    
+                    //Pushing to main thread since UI related changes
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.refreshControl endRefreshing];
+                        [self.tableView reloadData];
+                    });
+                }
+            }
+        }
+        else {
+            [self showError:@"An error occured while trying to fetch data! Please refresh after sometime"];
+        }
+    }];
+    
+}
+
+- (void)showError:(NSString *)errorMessage
+{
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:@"Error"
+                                 message:errorMessage
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* okButton = [UIAlertAction
+                                actionWithTitle:@"Ok"
+                                style:UIAlertActionStyleDefault
+                                handler:nil];
+    
+    //Adding ok buttons to alert controller
+    [alert addAction:okButton];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,67 +129,49 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return self.dataList.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    // Configure the cell...
+    static NSString *cellIdentifier = @"ItemCell";
     
-    return cell;
+    CustomTableCell *customCell = (CustomTableCell *)[self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (customCell == nil) {
+        customCell = [[CustomTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    ItemModel *item = [self.dataList objectAtIndex:indexPath.row];
+    
+    if(item) {
+        
+        customCell.titleLabel.text = item.itemTitle;
+        customCell.descriptionLabel.text = item.itemDescription;
+        customCell.itemImage.image = nil;
+        
+        //Load image data from cache if available
+        if([_cache objectForKey:item.imageURL]) {
+            customCell.itemImage.image = [UIImage imageWithData:[_cache objectForKey:item.imageURL]];
+        }
+        else {
+            [customCell.itemImage downloadImageFromUrl:item.imageURL withCompletionHandler:^(NSData *imageData, NSString *imageURL) {
+                
+                //Dispatching in main thread to avoid redownload if user quickly scrolls up and down (Quick change of visible cells)
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [_cache setObject:imageData forKey:imageURL];
+                });
+                
+            }];
+        }
+        
+    }
+    
+    return customCell;
 }
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

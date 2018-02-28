@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FA58C98720464DCA00F10875 /* UIImageView+ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = FA58C98620464DCA00F10875 /* UIImageView+ImageDownloader.m */; };
+		FA58C98A2046A74800F10875 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FA58C9892046A74800F10875 /* Reachability.m */; };
 		FAA8D97720452800006906F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D97620452800006906F1 /* main.m */; };
 		FAA8D97A20452800006906F1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D97920452800006906F1 /* AppDelegate.m */; };
 		FAA8D99220452BC9006906F1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D99120452BC9006906F1 /* MainViewController.m */; };
@@ -20,6 +21,8 @@
 /* Begin PBXFileReference section */
 		FA58C98520464DCA00F10875 /* UIImageView+ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+ImageDownloader.h"; path = "Categories/UIImageView+ImageDownloader.h"; sourceTree = "<group>"; };
 		FA58C98620464DCA00F10875 /* UIImageView+ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+ImageDownloader.m"; path = "Categories/UIImageView+ImageDownloader.m"; sourceTree = "<group>"; };
+		FA58C9882046A74800F10875 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Utilities/Reachability.h; sourceTree = "<group>"; };
+		FA58C9892046A74800F10875 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Utilities/Reachability.m; sourceTree = "<group>"; };
 		FAA8D97220452800006906F1 /* TelstraAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TelstraAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA8D97620452800006906F1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FAA8D97820452800006906F1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -127,6 +130,8 @@
 		FAA8D98F20452A10006906F1 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				FA58C9882046A74800F10875 /* Reachability.h */,
+				FA58C9892046A74800F10875 /* Reachability.m */,
 				FAA8D99320452F03006906F1 /* NetworkManager.h */,
 				FAA8D99420452F03006906F1 /* NetworkManager.m */,
 			);
@@ -205,6 +210,7 @@
 			files = (
 				FAA8D99B20452FBC006906F1 /* ItemModel.m in Sources */,
 				FA58C98720464DCA00F10875 /* UIImageView+ImageDownloader.m in Sources */,
+				FA58C98A2046A74800F10875 /* Reachability.m in Sources */,
 				FAA8D99820452F2F006906F1 /* CustomTableCell.m in Sources */,
 				FAA8D99520452F03006906F1 /* NetworkManager.m in Sources */,
 				FAA8D97A20452800006906F1 /* AppDelegate.m in Sources */,
