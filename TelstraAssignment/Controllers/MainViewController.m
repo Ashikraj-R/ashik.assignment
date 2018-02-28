@@ -12,6 +12,7 @@
 #import "CustomTableCell.h"
 #import "UIImageView+ImageDownloader.h"
 #import "Reachability.h"
+#import "Constants.h"
 
 @interface MainViewController ()
 
@@ -29,7 +30,7 @@
     
     [self initialSetup];
     [self fetchAndRefresh];
- 
+    
 }
 
 - (void) initialSetup {
@@ -55,51 +56,57 @@
 
 - (void) fetchAndRefresh {
     
-    //Check for internet connection and show error if not available
-    if([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] == NotReachable) {
-        [self showError:@"Internet is not available Please try after switching on internet"];
-        return;
-    }
-    
-    //Perform service call to fetch list from server
-    [NetworkManager getListFromServer:@"https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json" withCompletionHandler:^(NSDictionary *dictionary, NSError *error) {
+    @try {
         
-        //Check if no error is present
-        if(error == nil && dictionary != nil) {
+        //Check for internet connection and show error if not available
+        if([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] == NotReachable) {
+            [self showError:ERROR_NO_INTERNET];
+            return;
+        }
+        
+        //Perform service call to fetch list from server
+        [NetworkManager getListFromServer:URL_FOR_LIST withCompletionHandler:^(NSDictionary *dictionary, NSError *error) {
             
-            if([dictionary objectForKey:@"title"]) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    self.navigationController.navigationBar.topItem.title = [dictionary objectForKey:@"title"];
-                });
-            }
-            
-            if([dictionary objectForKey:@"rows"]) {
+            //Check if no error is present
+            if(error == nil && dictionary != nil) {
                 
-                //Checking if the row type is dictionary to avoid crashes
-                if([[dictionary objectForKey:@"rows"] isKindOfClass:[NSArray class]]) {
-                    [self.dataList removeAllObjects];
-                    NSArray *itemsList = [dictionary objectForKey:@"rows"];
-                    
-                    //Iterating and creating item models by passing the row data
-                    for(NSDictionary *itemData in itemsList) {
-                        ItemModel *item = [[ItemModel alloc] initWithDict:itemData];
-                        if(item) {
-                            [self.dataList addObject:item];
-                        }
-                    }
-                    
-                    //Pushing to main thread since UI related changes
+                if([dictionary objectForKey:@"title"]) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.refreshControl endRefreshing];
-                        [self.tableView reloadData];
+                        self.navigationController.navigationBar.topItem.title = [dictionary objectForKey:@"title"];
                     });
                 }
+                
+                if([dictionary objectForKey:@"rows"]) {
+                    
+                    //Checking if the row type is dictionary to avoid crashes
+                    if([[dictionary objectForKey:@"rows"] isKindOfClass:[NSArray class]]) {
+                        [self.dataList removeAllObjects];
+                        NSArray *itemsList = [dictionary objectForKey:@"rows"];
+                        
+                        //Iterating and creating item models by passing the row data
+                        for(NSDictionary *itemData in itemsList) {
+                            ItemModel *item = [[ItemModel alloc] initWithDict:itemData];
+                            if(item) {
+                                [self.dataList addObject:item];
+                            }
+                        }
+                        
+                        //Pushing to main thread since UI related changes
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self.refreshControl endRefreshing];
+                            [self.tableView reloadData];
+                        });
+                    }
+                }
             }
-        }
-        else {
-            [self showError:@"An error occured while trying to fetch data! Please refresh after sometime"];
-        }
-    }];
+            else {
+                [self showError:ERROR_FETCH_FAILED];
+            }
+        }];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Error occured : %@", exception);
+    }
     
 }
 
@@ -111,9 +118,9 @@
                                  preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* okButton = [UIAlertAction
-                                actionWithTitle:@"Ok"
-                                style:UIAlertActionStyleDefault
-                                handler:nil];
+                               actionWithTitle:@"Ok"
+                               style:UIAlertActionStyleDefault
+                               handler:nil];
     
     //Adding ok buttons to alert controller
     [alert addAction:okButton];
@@ -146,29 +153,34 @@
         customCell = [[CustomTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    ItemModel *item = [self.dataList objectAtIndex:indexPath.row];
-    
-    if(item) {
+    @try {
+        ItemModel *item = [self.dataList objectAtIndex:indexPath.row];
         
-        customCell.titleLabel.text = item.itemTitle;
-        customCell.descriptionLabel.text = item.itemDescription;
-        customCell.itemImage.image = nil;
-        
-        //Load image data from cache if available
-        if([_cache objectForKey:item.imageURL]) {
-            customCell.itemImage.image = [UIImage imageWithData:[_cache objectForKey:item.imageURL]];
+        if(item) {
+            
+            customCell.titleLabel.text = item.itemTitle;
+            customCell.descriptionLabel.text = item.itemDescription;
+            customCell.itemImage.image = nil;
+            
+            //Load image data from cache if available
+            if([_cache objectForKey:item.imageURL]) {
+                customCell.itemImage.image = [UIImage imageWithData:[_cache objectForKey:item.imageURL]];
+            }
+            else {
+                [customCell.itemImage downloadImageFromUrl:item.imageURL withCompletionHandler:^(NSData *imageData, NSString *imageURL) {
+                    
+                    //Dispatching in main thread to avoid redownload if user quickly scrolls up and down (Quick change of visible cells)
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [_cache setObject:imageData forKey:imageURL];
+                    });
+                    
+                }];
+            }
+            
         }
-        else {
-            [customCell.itemImage downloadImageFromUrl:item.imageURL withCompletionHandler:^(NSData *imageData, NSString *imageURL) {
-                
-                //Dispatching in main thread to avoid redownload if user quickly scrolls up and down (Quick change of visible cells)
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [_cache setObject:imageData forKey:imageURL];
-                });
-                
-            }];
-        }
-        
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Error occured : %@", exception);
     }
     
     return customCell;
