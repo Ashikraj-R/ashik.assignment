@@ -12,7 +12,7 @@
 
 //Method to get the date from the dropbox url
 //urlString : URL of the dropbox server in string format
-+ (void) getListFromServer:(NSString *)urlString withCompletionHandler:(void (^)(NSDictionary *responseDictionary, NSError * err))completionBlock {
++ (void) getListFromServer:(NSString *)urlString withCompletionHandler:(void (^)(NSDictionary *responseDictionary, NSError * error))completionBlock {
     
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
@@ -31,7 +31,8 @@
                  NSData *utfData = [decodedString dataUsingEncoding:NSUTF8StringEncoding];
                  NSError *parserError;
                  NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:utfData options:0 error:&parserError];
-                 
+                
+                 //Check if json object was parsed into dictionary without any issues 
                 if(dictionary) {
                     completionBlock(dictionary,nil);
                 }
@@ -52,7 +53,7 @@
 
 //Method to download the image
 //urlString : URL of the image
-+ (void) downloadImage:(NSString *)urlString withCompletionHandler:(void (^)(NSData *imageData, NSError * err))completionBlock {
++ (void) downloadImage:(NSString *)urlString withCompletionHandler:(void (^)(NSData *imageData, NSError * error))completionBlock {
     
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
@@ -64,6 +65,7 @@
              
              NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
              
+             //Status is success if status code is 200 and the data received for image is not nil
              if(httpResponse.statusCode == 200 && data != nil) {
                 completionBlock(data,nil);
              }
