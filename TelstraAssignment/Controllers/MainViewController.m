@@ -43,6 +43,7 @@
     //Set target to refresh control and add to the table view
     [self.refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
+    [self.refreshControl beginRefreshing];
     
     //Set the table cell height to dynamic so it increases or decreases depending on cell content
     self.tableView.rowHeight = UITableViewAutomaticDimension;
