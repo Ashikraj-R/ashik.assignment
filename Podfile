@@ -14,3 +14,9 @@ target 'TelstraAssignment' do
 	pod 'OSCache', :git => 'https://github.com/nicklockwood/OSCache.git'
 
 end
+
+target 'TelstraAssignmentTests' do
+
+        inherit! :search_paths
+
+end
