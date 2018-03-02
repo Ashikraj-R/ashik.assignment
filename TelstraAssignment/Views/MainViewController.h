@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ItemArrayViewModel.h"
 
 @interface MainViewController : UITableViewController
+
+@property (nonatomic, strong) ItemArrayViewModel *itemArrayViewModel;
+
+- (instancetype)initWithViewModel:(ItemArrayViewModel *) itemArrayViewModel;
 
 @end

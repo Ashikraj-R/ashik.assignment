@@ -8,7 +8,7 @@
 
 #import "MainViewController.h"
 #import "NetworkManager.h"
-#import "ItemModel.h"
+#import "ItemViewModel.h"
 #import "CustomTableCell.h"
 #import "UIImageView+ImageDownloader.h"
 #import "Reachability.h"
@@ -23,6 +23,18 @@
 @end
 
 @implementation MainViewController
+
+- (instancetype)initWithViewModel:(ItemArrayViewModel *) itemArrayViewModel {
+    
+    self = [super init];
+    
+    if(self) {
+        self.itemArrayViewModel = itemArrayViewModel;
+    }
+    
+    return self;
+    
+}
 
 - (void)viewDidLoad {
     
@@ -57,57 +69,27 @@
 
 - (void) fetchAndRefresh {
     
-    @try {
+    [self.itemArrayViewModel fetchItemswithCompletionHandler:^(NSError *error) {
         
-        //Check for internet connection and show error if not available
-        if([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] == NotReachable) {
-            [self showError:ERROR_NO_INTERNET];
-            return;
-        }
+        //Pushing to main thread since UI related changes
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.refreshControl endRefreshing];
+        });
         
-        //Perform service call to fetch list from server
-        [NetworkManager getListFromServer:URL_FOR_LIST withCompletionHandler:^(NSDictionary *dictionary, NSError *error) {
+        if(error == nil) {
             
-            //Check if no error is present
-            if(error == nil && dictionary != nil) {
-                
-                if([dictionary objectForKey:@"title"]) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        self.navigationController.navigationBar.topItem.title = [dictionary objectForKey:@"title"];
-                    });
-                }
-                
-                if([dictionary objectForKey:@"rows"]) {
-                    
-                    //Checking if the row type is dictionary to avoid crashes
-                    if([[dictionary objectForKey:@"rows"] isKindOfClass:[NSArray class]]) {
-                        [self.dataList removeAllObjects];
-                        NSArray *itemsList = [dictionary objectForKey:@"rows"];
-                        
-                        //Iterating and creating item models by passing the row data
-                        for(NSDictionary *itemData in itemsList) {
-                            ItemModel *item = [[ItemModel alloc] initWithDict:itemData];
-                            if(item) {
-                                [self.dataList addObject:item];
-                            }
-                        }
-                        
-                        //Pushing to main thread since UI related changes
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            [self.refreshControl endRefreshing];
-                            [self.tableView reloadData];
-                        });
-                    }
-                }
-            }
-            else {
-                [self showError:ERROR_FETCH_FAILED];
-            }
-        }];
-    }
-    @catch (NSException *exception) {
-        NSLog(@"Error occured : %@", exception);
-    }
+            //Pushing to main thread since UI related changes
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.navigationController.navigationBar.topItem.title = self.itemArrayViewModel.listTitle;
+                [self.tableView reloadData];
+            });
+            
+        }
+        else {
+            [self showError:ERROR_FETCH_FAILED];
+        }
+    }];
+    
     
 }
 
@@ -141,9 +123,8 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataList.count;
+    return self.itemArrayViewModel.itemsCount;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -155,13 +136,28 @@
     }
     
     @try {
-        ItemModel *item = [self.dataList objectAtIndex:indexPath.row];
         
-        if(item) {
+        ItemViewModel *item = [self.itemArrayViewModel itemAtIndex:indexPath.row];
+        
+        customCell.titleLabel.text = item.itemTitle;
+        customCell.descriptionLabel.text = item.itemDescription;
+        customCell.itemImage.image = nil;
+        
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Error occured : %@", exception);
+    }
+    
+    return customCell;
+}
+
+- (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    @try {
+        if ([cell isKindOfClass:[CustomTableCell class]]) {
             
-            customCell.titleLabel.text = item.itemTitle;
-            customCell.descriptionLabel.text = item.itemDescription;
-            customCell.itemImage.image = nil;
+            CustomTableCell *customCell = (CustomTableCell *)cell;
+            ItemViewModel *item = [self.itemArrayViewModel itemAtIndex:indexPath.row];
             
             //Load image data from cache if available
             if([_cache objectForKey:item.imageURL]) {
@@ -177,14 +173,11 @@
                     
                 }];
             }
-            
         }
     }
     @catch (NSException *exception) {
         NSLog(@"Error occured : %@", exception);
     }
-    
-    return customCell;
 }
 
 @end

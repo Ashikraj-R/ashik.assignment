@@ -9,9 +9,12 @@
 /* Begin PBXBuildFile section */
 		FA58C98720464DCA00F10875 /* UIImageView+ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = FA58C98620464DCA00F10875 /* UIImageView+ImageDownloader.m */; };
 		FA58C98A2046A74800F10875 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FA58C9892046A74800F10875 /* Reachability.m */; };
+		FA58C9FA2048F0A000F10875 /* ItemArrayViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA58C9F72048F0A000F10875 /* ItemArrayViewModel.m */; };
+		FA58C9FB2048F0A000F10875 /* ItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA58C9F92048F0A000F10875 /* ItemViewModel.m */; };
+		FA58C9FE2048F0B000F10875 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA58C9FD2048F0B000F10875 /* MainViewController.m */; };
+		FA58CA012048F0BA00F10875 /* ItemArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA58CA002048F0BA00F10875 /* ItemArrayModel.m */; };
 		FAA8D97720452800006906F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D97620452800006906F1 /* main.m */; };
 		FAA8D97A20452800006906F1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D97920452800006906F1 /* AppDelegate.m */; };
-		FAA8D99220452BC9006906F1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D99120452BC9006906F1 /* MainViewController.m */; };
 		FAA8D99520452F03006906F1 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D99420452F03006906F1 /* NetworkManager.m */; };
 		FAA8D99820452F2F006906F1 /* CustomTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D99720452F2F006906F1 /* CustomTableCell.m */; };
 		FAA8D99B20452FBC006906F1 /* ItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D99A20452FBC006906F1 /* ItemModel.m */; };
@@ -24,14 +27,20 @@
 		FA58C9882046A74800F10875 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Utilities/Reachability.h; sourceTree = "<group>"; };
 		FA58C9892046A74800F10875 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Utilities/Reachability.m; sourceTree = "<group>"; };
 		FA58C98B2046B1C400F10875 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = Utilities/Constants.h; sourceTree = "<group>"; };
+		FA58C9F62048F0A000F10875 /* ItemArrayViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemArrayViewModel.h; path = ViewModels/ItemArrayViewModel.h; sourceTree = "<group>"; };
+		FA58C9F72048F0A000F10875 /* ItemArrayViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemArrayViewModel.m; path = ViewModels/ItemArrayViewModel.m; sourceTree = "<group>"; };
+		FA58C9F82048F0A000F10875 /* ItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemViewModel.h; path = ViewModels/ItemViewModel.h; sourceTree = "<group>"; };
+		FA58C9F92048F0A000F10875 /* ItemViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemViewModel.m; path = ViewModels/ItemViewModel.m; sourceTree = "<group>"; };
+		FA58C9FC2048F0B000F10875 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Views/MainViewController.h; sourceTree = "<group>"; };
+		FA58C9FD2048F0B000F10875 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Views/MainViewController.m; sourceTree = "<group>"; };
+		FA58C9FF2048F0BA00F10875 /* ItemArrayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemArrayModel.h; path = Models/ItemArrayModel.h; sourceTree = "<group>"; };
+		FA58CA002048F0BA00F10875 /* ItemArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemArrayModel.m; path = Models/ItemArrayModel.m; sourceTree = "<group>"; };
 		FAA8D97220452800006906F1 /* TelstraAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TelstraAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA8D97620452800006906F1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FAA8D97820452800006906F1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FAA8D97920452800006906F1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FAA8D98120452801006906F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAA8D98620452801006906F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FAA8D99020452BC9006906F1 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Controllers/MainViewController.h; sourceTree = "<group>"; };
-		FAA8D99120452BC9006906F1 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Controllers/MainViewController.m; sourceTree = "<group>"; };
 		FAA8D99320452F03006906F1 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkManager.h; path = Utilities/NetworkManager.h; sourceTree = "<group>"; };
 		FAA8D99420452F03006906F1 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkManager.m; path = Utilities/NetworkManager.m; sourceTree = "<group>"; };
 		FAA8D99620452F2F006906F1 /* CustomTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomTableCell.h; path = Views/CustomTableCell.h; sourceTree = "<group>"; };
@@ -60,6 +69,17 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
+		FA58C9F52048F09000F10875 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FA58C9F62048F0A000F10875 /* ItemArrayViewModel.h */,
+				FA58C9F72048F0A000F10875 /* ItemArrayViewModel.m */,
+				FA58C9F82048F0A000F10875 /* ItemViewModel.h */,
+				FA58C9F92048F0A000F10875 /* ItemViewModel.m */,
+			);
+			name = ViewModels;
+			sourceTree = "<group>";
+		};
 		FAA8D96920452800006906F1 = {
 			isa = PBXGroup;
 			children = (
@@ -80,10 +100,10 @@
 			isa = PBXGroup;
 			children = (
 				FA58C98420464D1300F10875 /* Categories */,
-				FAA8D98F20452A10006906F1 /* Utilities */,
-				FAA8D98E20452A09006906F1 /* Controllers */,
-				FAA8D98D20452A03006906F1 /* Views */,
 				FAA8D98C204529FA006906F1 /* Models */,
+				FAA8D98D20452A03006906F1 /* Views */,
+				FA58C9F52048F09000F10875 /* ViewModels */,
+				FAA8D98F20452A10006906F1 /* Utilities */,
 				FAA8D97820452800006906F1 /* AppDelegate.h */,
 				FAA8D97920452800006906F1 /* AppDelegate.m */,
 				FAA8D98120452801006906F1 /* Assets.xcassets */,
@@ -104,6 +124,8 @@
 		FAA8D98C204529FA006906F1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FA58C9FF2048F0BA00F10875 /* ItemArrayModel.h */,
+				FA58CA002048F0BA00F10875 /* ItemArrayModel.m */,
 				FAA8D99920452FBC006906F1 /* ItemModel.h */,
 				FAA8D99A20452FBC006906F1 /* ItemModel.m */,
 			);
@@ -113,19 +135,12 @@
 		FAA8D98D20452A03006906F1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FA58C9FC2048F0B000F10875 /* MainViewController.h */,
+				FA58C9FD2048F0B000F10875 /* MainViewController.m */,
 				FAA8D99620452F2F006906F1 /* CustomTableCell.h */,
 				FAA8D99720452F2F006906F1 /* CustomTableCell.m */,
 			);
 			name = Views;
-			sourceTree = "<group>";
-		};
-		FAA8D98E20452A09006906F1 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				FAA8D99020452BC9006906F1 /* MainViewController.h */,
-				FAA8D99120452BC9006906F1 /* MainViewController.m */,
-			);
-			name = Controllers;
 			sourceTree = "<group>";
 		};
 		FAA8D98F20452A10006906F1 /* Utilities */ = {
@@ -211,12 +226,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAA8D99B20452FBC006906F1 /* ItemModel.m in Sources */,
+				FA58C9FA2048F0A000F10875 /* ItemArrayViewModel.m in Sources */,
 				FA58C98720464DCA00F10875 /* UIImageView+ImageDownloader.m in Sources */,
+				FA58C9FE2048F0B000F10875 /* MainViewController.m in Sources */,
 				FA58C98A2046A74800F10875 /* Reachability.m in Sources */,
 				FAA8D99820452F2F006906F1 /* CustomTableCell.m in Sources */,
 				FAA8D99520452F03006906F1 /* NetworkManager.m in Sources */,
 				FAA8D97A20452800006906F1 /* AppDelegate.m in Sources */,
-				FAA8D99220452BC9006906F1 /* MainViewController.m in Sources */,
+				FA58C9FB2048F0A000F10875 /* ItemViewModel.m in Sources */,
+				FA58CA012048F0BA00F10875 /* ItemArrayModel.m in Sources */,
 				FAA8D97720452800006906F1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
