@@ -142,8 +142,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSLog(MESSAGE_ENTERING,__FUNCTION__);
-    
     static NSString *cellIdentifier = CELL_IDENTIFIER;
     
     CustomTableCell *customCell = (CustomTableCell *)[self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -164,16 +162,10 @@
         NSLog(ERROR_STANDARD,__FUNCTION__, exception);
     }
     
-    @finally {
-        NSLog(MESSAGE_EXITING,__FUNCTION__);
-    }
-    
     return customCell;
 }
 
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    NSLog(MESSAGE_ENTERING,__FUNCTION__);
     
     @try {
         if ([cell isKindOfClass:[CustomTableCell class]]) {
@@ -199,9 +191,6 @@
     }
     @catch (NSException *exception) {
         NSLog(ERROR_STANDARD,__FUNCTION__, exception);
-    }
-    @finally {
-        NSLog(MESSAGE_EXITING,__FUNCTION__);
     }
 }
 
