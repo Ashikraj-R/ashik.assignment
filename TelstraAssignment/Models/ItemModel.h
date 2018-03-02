@@ -7,13 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JSONModel.h"
 
-@interface ItemModel : NSObject
+@protocol ItemModel;
 
-@property (strong, nonatomic) NSString *itemTitle;
-@property (strong, nonatomic) NSString *itemDescription;
-@property (strong, nonatomic) NSString *imageURL;
+@interface ItemModel :JSONModel
 
-- (instancetype)initWithDict:(NSDictionary *)dictionary;
+@property (strong, nonatomic) NSString <Optional> *itemTitle;
+@property (strong, nonatomic) NSString <Optional> *itemDescription;
+@property (strong, nonatomic) NSString <Optional> *imageURL;
+
++ (JSONKeyMapper *)keyMapper;
 
 @end

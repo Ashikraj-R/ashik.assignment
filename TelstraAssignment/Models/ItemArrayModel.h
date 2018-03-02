@@ -7,12 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JSONModel.h"
+#import "ItemModel.h"
 
-@interface ItemArrayModel : NSObject
+@interface ItemArrayModel : JSONModel
 
 @property (strong, nonatomic) NSString *title;
-@property (strong, nonatomic) NSArray *itemsList;
+@property (strong, nonatomic) NSArray<ItemModel> *itemsList;
 
++ (JSONKeyMapper *)keyMapper;
 + (void) fetchItemswithCompletionHandler:(void (^)(ItemArrayModel *itemArrayModel, NSError * error))completionBlock;
 
 @end

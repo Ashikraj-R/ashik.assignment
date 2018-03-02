@@ -13,12 +13,13 @@
 #import "UIImageView+ImageDownloader.h"
 #import "Reachability.h"
 #import "Constants.h"
+#import "OSCache.h"
 
 @interface MainViewController ()
 
 @property (strong, nonatomic) NSMutableArray *dataList;
 @property (strong, nonatomic) NSString *navigationTitle;
-@property (strong, nonatomic) NSCache *cache;
+@property (strong, nonatomic) OSCache *cache;
 
 @end
 
@@ -49,7 +50,7 @@
     
     //Initialize the required objects
     self.dataList = [[NSMutableArray alloc] init];
-    self.cache = [[NSCache alloc] init];
+    self.cache = [[OSCache alloc] init];
     self.refreshControl = [[UIRefreshControl alloc] init];
     
     //Set target to refresh control and add to the table view

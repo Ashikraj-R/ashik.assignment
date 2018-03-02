@@ -7,62 +7,17 @@
 //
 
 #import "ItemArrayModel.h"
-#import "ItemModel.h"
 #import "NetworkManager.h"
 #import "Reachability.h"
 #import "Constants.h"
 
 @implementation ItemArrayModel
 
-- (instancetype)initWithDict:(NSDictionary *)dictionary{
++ (JSONKeyMapper *)keyMapper {
     
-    self = [super init];
-    
-    if(self)
-    {
-        @try {
-            
-            if([dictionary objectForKey:@"title"]) {
-                
-                //Check if null received in JSON
-                if([dictionary objectForKey:@"title"] == [NSNull null]) {
-                    self.title = @"";
-                }
-                else {
-                    self.title = [dictionary objectForKey:@"title"];
-                }
-            }
-            
-            if([dictionary objectForKey:@"rows"]) {
-                
-                if([[dictionary objectForKey:@"rows"] isKindOfClass:[NSArray class]]) {
-                    
-                    NSMutableArray *itemArray = [[NSMutableArray alloc] init];
-                    
-                    for(NSDictionary *itemDict in [dictionary objectForKey:@"rows"]) {
-                        
-                        ItemModel *item = [[ItemModel alloc] initWithDict:itemDict];
-                        
-                        if(item) {
-                            [itemArray addObject:item];
-                        }
-                        
-                    }
-                    
-                    self.itemsList = itemArray;
-                    
-                }
-            }
-        }
-        @catch (NSException *exception) {
-            
-            NSLog(@"Error occured : %@", exception);
-            return nil;
-            
-        }
-    }
-    
-    return self;
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:
+            @{@"title":@"title",
+              @"itemsList":@"rows"}];
     
 }
 
@@ -87,8 +42,9 @@
         //Check if no error is present
         if(error == nil && dictionary != nil) {
             
-            ItemArrayModel *itemArrayModel = [[ItemArrayModel alloc] initWithDict:dictionary];
-            completionBlock(itemArrayModel, nil);
+            NSError *err;
+            ItemArrayModel *itemArrayModel = [[ItemArrayModel alloc] initWithDictionary:dictionary error:&err];
+            completionBlock(itemArrayModel, err);
             
         }
         else {
