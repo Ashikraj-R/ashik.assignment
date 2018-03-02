@@ -8,6 +8,7 @@
 
 #import "ItemArrayViewModel.h"
 #import "ItemModel.h"
+#import "Constants.h"
 
 @interface ItemArrayViewModel ()
 
@@ -74,6 +75,8 @@
 
 - (void) fetchItemswithCompletionHandler:(void (^)(NSError * error))completionBlock {
     
+    NSLog(MESSAGE_ENTERING,__FUNCTION__);
+    
     [ItemArrayModel fetchItemswithCompletionHandler:^(ItemArrayModel *itemArrayModel, NSError *error) {
         if(itemArrayModel) {
             self.itemArrayModel = itemArrayModel;
@@ -83,6 +86,8 @@
             completionBlock(error);
         }
     }];
+    
+    NSLog(MESSAGE_EXITING,__FUNCTION__);
     
 }
 

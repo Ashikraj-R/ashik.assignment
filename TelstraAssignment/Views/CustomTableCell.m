@@ -7,6 +7,7 @@
 //
 
 #import "CustomTableCell.h"
+#import "Constants.h"
 
 @implementation CustomTableCell
 
@@ -53,6 +54,8 @@
 //Method which sets the constraints required by the title view
 - (void) setConstraints {
     
+    NSLog(MESSAGE_ENTERING,__FUNCTION__);
+    
     NSDictionary *views = NSDictionaryOfVariableBindings(_titleLabel,_descriptionLabel,_itemImage);
     NSMutableArray *constraintsArray = [[NSMutableArray alloc] init];
     
@@ -69,6 +72,8 @@
     [constraintsArray addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_titleLabel]-10.0@1000-[_descriptionLabel]->=10.0@750-|" options:NSLayoutFormatAlignAllLeading metrics:nil views:views]];
     
     [NSLayoutConstraint activateConstraints:constraintsArray];
+    
+    NSLog(MESSAGE_EXITING,__FUNCTION__);
     
 }
 

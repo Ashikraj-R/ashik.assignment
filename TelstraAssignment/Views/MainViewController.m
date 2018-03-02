@@ -48,6 +48,8 @@
 
 - (void) initialSetup {
     
+    NSLog(MESSAGE_ENTERING,__FUNCTION__);
+    
     //Initialize the required objects
     self.dataList = [[NSMutableArray alloc] init];
     self.cache = [[OSCache alloc] init];
@@ -62,6 +64,8 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 50;
     
+    NSLog(MESSAGE_EXITING,__FUNCTION__);
+    
 }
 
 - (void) refreshTable {
@@ -69,6 +73,8 @@
 }
 
 - (void) fetchAndRefresh {
+    
+    NSLog(MESSAGE_ENTERING,__FUNCTION__);
     
     [self.itemArrayViewModel fetchItemswithCompletionHandler:^(NSError *error) {
         
@@ -91,11 +97,15 @@
         }
     }];
     
+    NSLog(MESSAGE_EXITING,__FUNCTION__);
     
 }
 
 - (void)showError:(NSString *)errorMessage
 {
+    
+    NSLog(MESSAGE_ENTERING,__FUNCTION__);
+    
     UIAlertController * alert = [UIAlertController
                                  alertControllerWithTitle:@"Error"
                                  message:errorMessage
@@ -110,6 +120,9 @@
     [alert addAction:okButton];
     
     [self presentViewController:alert animated:YES completion:nil];
+    
+    
+    NSLog(MESSAGE_EXITING,__FUNCTION__);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -129,7 +142,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *cellIdentifier = @"ItemCell";
+    NSLog(MESSAGE_ENTERING,__FUNCTION__);
+    
+    static NSString *cellIdentifier = CELL_IDENTIFIER;
     
     CustomTableCell *customCell = (CustomTableCell *)[self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (customCell == nil) {
@@ -146,13 +161,19 @@
         
     }
     @catch (NSException *exception) {
-        NSLog(@"Error occured : %@", exception);
+        NSLog(ERROR_STANDARD,__FUNCTION__, exception);
+    }
+    
+    @finally {
+        NSLog(MESSAGE_EXITING,__FUNCTION__);
     }
     
     return customCell;
 }
 
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSLog(MESSAGE_ENTERING,__FUNCTION__);
     
     @try {
         if ([cell isKindOfClass:[CustomTableCell class]]) {
@@ -177,7 +198,10 @@
         }
     }
     @catch (NSException *exception) {
-        NSLog(@"Error occured : %@", exception);
+        NSLog(ERROR_STANDARD,__FUNCTION__, exception);
+    }
+    @finally {
+        NSLog(MESSAGE_EXITING,__FUNCTION__);
     }
 }
 
