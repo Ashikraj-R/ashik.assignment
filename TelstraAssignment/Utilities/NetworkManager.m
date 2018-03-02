@@ -7,12 +7,15 @@
 //
 
 #import "NetworkManager.h"
+#import "Constants.h"
 
 @implementation NetworkManager
 
 //Method to get the date from the dropbox url
 //urlString : URL of the dropbox server in string format
 + (void) getListFromServer:(NSString *)urlString withCompletionHandler:(void (^)(NSDictionary *responseDictionary, NSError * error))completionBlock {
+    
+    NSLog(MESSAGE_ENTERING,__FUNCTION__);
     
     @try {
         
@@ -53,11 +56,11 @@
          }];
     }
     @catch (NSException *exception) {
-        NSLog(@"Error occured : %@", exception);
+        NSLog(ERROR_STANDARD,__FUNCTION__, exception);
         
         //Creating custom error object
         NSMutableDictionary *info = [[NSMutableDictionary alloc] init];
-        [info setValue:@"Message" forKey:@"Error occured while parsing received data"];
+        [info setValue:ERROR_MESSAGE_KEY forKey:ERROR_PARSE];
         NSError *error = [[NSError alloc] initWithDomain:NSCocoaErrorDomain code:1000 userInfo:info];
         
         completionBlock(nil,error);
@@ -67,6 +70,8 @@
 //Method to download the image
 //urlString : URL of the image
 + (void) downloadImage:(NSString *)urlString withCompletionHandler:(void (^)(NSData *imageData, NSError * error))completionBlock {
+    
+    NSLog(MESSAGE_ENTERING,__FUNCTION__);
     
     @try {
         
@@ -95,7 +100,7 @@
          }];
     }
     @catch (NSException *exception) {
-        NSLog(@"Error occured : %@", exception);
+        NSLog(ERROR_STANDARD,__FUNCTION__, exception);
     }
 }
 

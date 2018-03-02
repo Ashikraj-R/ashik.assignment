@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ItemArrayViewModel.h"
 #import "MainViewController.h"
 
 @interface AppDelegate ()
@@ -18,12 +19,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    //Resizing app window to occupy full screen
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.navigationController = [[UINavigationController alloc] initWithRootViewController:[[MainViewController alloc] init]];
+    
+    //Initializing main view controller and assigning as the root view controller to the window
+    self.navigationController = [[UINavigationController alloc] initWithRootViewController:[[MainViewController alloc] initWithViewModel:[[ItemArrayViewModel alloc] init]]];
     self.window.rootViewController = self.navigationController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

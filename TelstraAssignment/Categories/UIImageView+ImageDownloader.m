@@ -8,12 +8,15 @@
 
 #import "UIImageView+ImageDownloader.h"
 #import "NetworkManager.h"
+#import "Constants.h"
 
 @implementation UIImageView (ImageDownloader)
 
 
 //Extension method to download image from server/online.
 - (void)downloadImageFromUrl:(NSString *)urlString withCompletionHandler:(void (^)(NSData *imageData, NSString *imageURL))completionBlock {
+    
+    NSLog(MESSAGE_ENTERING,__FUNCTION__);
     
     @try {
     
@@ -31,7 +34,11 @@
     }
     
     @catch (NSException *exception) {
-        NSLog(@"Error occured : %@", exception);
+        NSLog(ERROR_STANDARD,__FUNCTION__, exception);
+    }
+    
+    @finally {
+        NSLog(MESSAGE_EXITING,__FUNCTION__);
     }
 }
 

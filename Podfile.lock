@@ -1,0 +1,29 @@
+PODS:
+  - JSONModel (1.7.0)
+  - OSCache (1.2.1)
+
+DEPENDENCIES:
+  - JSONModel (from `https://github.com/jsonmodel/jsonmodel.git`)
+  - OSCache (from `https://github.com/nicklockwood/OSCache.git`)
+
+EXTERNAL SOURCES:
+  JSONModel:
+    :git: https://github.com/jsonmodel/jsonmodel.git
+  OSCache:
+    :git: https://github.com/nicklockwood/OSCache.git
+
+CHECKOUT OPTIONS:
+  JSONModel:
+    :commit: cebb6d9cc1320eb20b61adea31a0c894b3cb7266
+    :git: https://github.com/jsonmodel/jsonmodel.git
+  OSCache:
+    :commit: c49e4c137eee95ed5782b59ae5a27f1c55f66e54
+    :git: https://github.com/nicklockwood/OSCache.git
+
+SPEC CHECKSUMS:
+  JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
+  OSCache: 826996b68e8542a8a3d8af1ab0a0fc3070d8f357
+
+PODFILE CHECKSUM: 60a799607539d585506640cb594f7dc394bdebd3
+
+COCOAPODS: 1.4.0
